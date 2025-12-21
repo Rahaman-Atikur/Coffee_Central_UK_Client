@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         Component:Home
       },
       {
-        path:'addCoffee',
+        path:'/addCoffee',
         Component:AddCoffee
       },
       {
