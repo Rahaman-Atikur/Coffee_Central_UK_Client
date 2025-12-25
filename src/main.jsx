@@ -11,13 +11,13 @@ const router = createBrowserRouter([
   {
     path:'/',
     element:<Layouts></Layouts>,
-    Children:[
+    children:[
       {
         index:true,
         Component:Home
       },
       {
-        path:'/addCoffee',
+        path:'addCoffee',
         Component:AddCoffee
       },
       {
