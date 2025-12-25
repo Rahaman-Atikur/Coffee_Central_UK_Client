@@ -2,8 +2,16 @@ import React from 'react';
 
 const AddCoffee = () => {
 
-    const handleAddCoffee=e=>{
+    const handleAddCoffee = e => {
         e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const coffeeData = Object.fromEntries(formData.entries());
+        console.log(coffeeData);
+        //Send coffee data to the database
+
+
+
 
     }
 
@@ -39,7 +47,7 @@ const AddCoffee = () => {
                         <label className="label">Category</label>
                         <input type="text" className="input w-full" placeholder="Enter Coffee Category" />
                     </fieldset>
-                    
+
                 </div>
                 {/* Photo Field and Button */}
                 <div className='my-5'>
@@ -48,7 +56,7 @@ const AddCoffee = () => {
                         <input type="text" className="input w-full" placeholder="Upload Photo from Device" />
                         <button className="btn btn-active btn-secondary">Add Coffee</button>
                     </fieldset>
-                    
+
                 </div>
 
             </form>
