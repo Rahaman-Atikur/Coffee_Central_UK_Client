@@ -6,9 +6,22 @@ const AddCoffee = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const coffeeData = Object.fromEntries(formData.entries());
-        console.log(coffeeData);
+        const newCoffee = Object.fromEntries(formData.entries());
+        console.log(newCoffee);
+
         //Send coffee data to the database
+
+        fetch('https://localhost:3000/coffees',{
+            method:'POST',
+            headers:{
+                'content-type':'application-json'
+            },
+            body: JSON.stringify(newCoffee)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log('after adding coffee  to data :',data)
+        })
 
 
 
