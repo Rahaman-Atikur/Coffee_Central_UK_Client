@@ -3,26 +3,27 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import Layouts from './Layouts/Layouts.jsx'
-import {createBrowserRouter, RouterProvider} from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from './Components/Home.jsx'
 import AddCoffee from './Components/AddCoffee.jsx'
 import UpdateCoffee from './Components/UpdateCoffee.jsx'
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<Layouts></Layouts>,
-    children:[
+    path: '/',
+    element: <Layouts></Layouts>,
+    children: [
       {
-        index:true,
-        Component:Home
+        index: true,
+        loader: () => fetch('http://localhost:5173/coffees'),
+        Component: Home
       },
       {
-        path:'addCoffee',
-        Component:AddCoffee
+        path: 'addCoffee',
+        Component: AddCoffee
       },
       {
-        path:'updateCoffee',
-        Component:UpdateCoffee
+        path: 'updateCoffee',
+        Component: UpdateCoffee
       }
     ]
   }

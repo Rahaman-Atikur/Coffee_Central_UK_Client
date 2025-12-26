@@ -24,7 +24,6 @@ const AddCoffee = () => {
         })
 
     }
-
     return (
         <div className='p-24'>
             <div className='p-12 text-center space-y-4'>
@@ -66,11 +65,8 @@ const AddCoffee = () => {
                         <input name='photo' type="text" className="input w-full" placeholder="Upload Photo from Device" />
                         <button className="btn btn-active btn-secondary">Add Coffee</button>
                     </fieldset>
-
                 </div>
-
             </form>
-
         </div>
     );
 };
