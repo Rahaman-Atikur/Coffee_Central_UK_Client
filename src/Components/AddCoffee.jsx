@@ -11,10 +11,10 @@ const AddCoffee = () => {
 
         //Send coffee data to the database
 
-        fetch('https://localhost:3000/coffees',{
+        fetch('http://localhost:3000/coffees',{
             method:'POST',
             headers:{
-                'content-type':'application-json'
+                'content-type':'application/json'
             },
             body: JSON.stringify(newCoffee)
         })
@@ -22,9 +22,6 @@ const AddCoffee = () => {
         .then(data=>{
             console.log('after adding coffee  to data :',data)
         })
-
-
-
 
     }
 
@@ -38,27 +35,27 @@ const AddCoffee = () => {
                 <div className='grid grid-cols-2  gap-6'>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Name</label>
-                        <input type="text" className="input w-full" placeholder="Enter Coffee Name" />
+                        <input name='name' type="text" className="input w-full" placeholder="Enter Coffee Name" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Chef</label>
-                        <input type="text" className="input w-full" placeholder="Enter Chef Name" />
+                        <input name='chefName' type="text" className="input w-full" placeholder="Enter Chef Name" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Supplier</label>
-                        <input type="text" className="input w-full" placeholder="Enter supplier name" />
+                        <input name='supplierName' type="text" className="input w-full" placeholder="Enter supplier name" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Category</label>
-                        <input type="text" className="input w-full" placeholder="Enter Category Name" />
+                        <input name='CategoryName' type="text" className="input w-full" placeholder="Enter Category Name" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Details</label>
-                        <input type="text" className="input w-full" placeholder="Enter Coffee Details" />
+                        <input name='coffeeDetails' type="text" className="input w-full" placeholder="Enter Coffee Details" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Category</label>
-                        <input type="text" className="input w-full" placeholder="Enter Coffee Category" />
+                        <input name='category' type="text" className="input w-full" placeholder="Enter Coffee Category" />
                     </fieldset>
 
                 </div>
@@ -66,7 +63,7 @@ const AddCoffee = () => {
                 <div className='my-5'>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Photo</label>
-                        <input type="text" className="input w-full" placeholder="Upload Photo from Device" />
+                        <input name='photo' type="text" className="input w-full" placeholder="Upload Photo from Device" />
                         <button className="btn btn-active btn-secondary">Add Coffee</button>
                     </fieldset>
 
