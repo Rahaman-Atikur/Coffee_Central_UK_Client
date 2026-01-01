@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 
 const AddCoffee = () => {
 
@@ -11,17 +12,23 @@ const AddCoffee = () => {
 
         //Send coffee data to the database
 
-        fetch('http://localhost:3000/coffees',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+        fetch('http://localhost:3000/coffees', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
             body: JSON.stringify(newCoffee)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log('after adding coffee  to data :',data)
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Coffee Added",
+                        icon: "success",
+                        draggable: true
+                    });
+                }
+            })
 
     }
     return (
@@ -37,8 +44,8 @@ const AddCoffee = () => {
                         <input name='name' type="text" className="input w-full" placeholder="Enter Coffee Name" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
-                        <label className="label">Chef</label>
-                        <input name='chefName' type="text" className="input w-full" placeholder="Enter Chef Name" />
+                        <label className="label">Price</label>
+                        <input name='price' type="text" className="input w-full" placeholder="Enter Price per Cup" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Supplier</label>
