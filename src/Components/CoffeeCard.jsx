@@ -1,18 +1,24 @@
 import React from 'react';
 
-const CoffeeCard = () => {
+const CoffeeCard = ({ coffee }) => {
+    const { name, price, quantity, photo } = coffee;
     return (
         <div className="card card-side bg-base-100 shadow-sm">
             <figure>
                 <img
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                    src={photo}
                     alt="Movie" />
             </figure>
-            <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Watch</button>
+            <div className="flex w-full mt-6 justify-around border-8">
+                <div className='mt-6'>
+                    <h2 className="card-title">{name}</h2>
+                    <p>price:{price}</p>
+                    <p>quantity:{quantity}</p>
+                </div>
+                <div className='join join-vertical space-y-2'>
+                    <button className='btn'>View</button>
+                    <button className='btn'>Edit</button>
+                    <button className='btn'>X</button>
                 </div>
             </div>
         </div>

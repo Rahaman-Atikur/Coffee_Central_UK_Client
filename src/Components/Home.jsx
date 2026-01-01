@@ -7,10 +7,12 @@ const Home = () => {
     console.log(coffees);
     return (
         <div>
-           { 
-           coffees.map(coffee=><CoffeeCard key={coffee._id} coffee={coffee}></CoffeeCard>)
-           
-           }
+            <div className='grid grid-cols-2  gap-6'>
+                {
+                    coffees.map(coffee => <CoffeeCard key={coffee._id} coffee={coffee}></CoffeeCard>)
+
+                }
+            </div>
         </div>
     );
 };
