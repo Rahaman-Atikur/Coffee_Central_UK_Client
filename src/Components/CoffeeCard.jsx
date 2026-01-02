@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 const CoffeeCard = ({ coffee }) => {
     const { _id, name, price, quantity, photo } = coffee;
@@ -13,12 +14,56 @@ const CoffeeCard = ({ coffee }) => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
+            console.log(result.isConfirmed);
             if (result.isConfirmed) {
                 Swal.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted.",
                     icon: "success"
                 });
+                fetch(`http://localhost:3000/coffees/${_id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log('after deleting the data:',data);
+                        if (data.deletedCount) {
+                            const swalWithBootstrapButtons = Swal.mixin({
+                                customClass: {
+                                    confirmButton: "btn btn-success",
+                                    cancelButton: "btn btn-danger"
+                                },
+                                buttonsStyling: false
+                            });
+                            swalWithBootstrapButtons.fire({
+                                title: "Are you sure?",
+                                text: "You won't be able to revert this!",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonText: "Yes, delete it!",
+                                cancelButtonText: "No, cancel!",
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    swalWithBootstrapButtons.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                } else if (
+                                    /* Read more about handling dismissals below */
+                                    result.dismiss === Swal.DismissReason.cancel
+                                ) {
+                                    swalWithBootstrapButtons.fire({
+                                        title: "Cancelled",
+                                        text: "Your imaginary file is safe :)",
+                                        icon: "error"
+                                    });
+                                }
+                            });
+                        }
+                    })
+
             }
         });
     }
@@ -31,6 +76,9 @@ const CoffeeCard = ({ coffee }) => {
             </figure>
             <div className="flex w-full mt-6 justify-around border-8">
                 <div className='mt-6'>
+                    <Link to={`/coffee/${_id}`}>
+                        <button className='btn join-item'>View</button>
+                    </Link>
                     <h2 className="card-title">{name}</h2>
                     <p>price:{price}</p>
                     <p>quantity:{quantity}</p>
