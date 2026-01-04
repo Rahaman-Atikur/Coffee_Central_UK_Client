@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         Component: CoffeeDetails
       },
       {
-        path: 'updateCoffee',
+        path: 'updateCoffee/:id',
         Component: UpdateCoffee
       }
     ]

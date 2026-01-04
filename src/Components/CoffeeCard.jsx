@@ -63,7 +63,6 @@ const CoffeeCard = ({ coffee }) => {
                             });
                         }
                     })
-
             }
         });
     }
@@ -77,7 +76,10 @@ const CoffeeCard = ({ coffee }) => {
             <div className="flex w-full mt-6 justify-around border-8">
                 <div className='mt-6'>
                     <Link to={`/coffee/${_id}`}>
-                        <button className='btn join-item'>View</button>
+                        <button className='btn join-item'>Show</button>
+                    </Link>
+                    <Link to={`/updateCoffee/${_id}`}>
+                        <button className='btn join-item'>Edit</button>
                     </Link>
                     <h2 className="card-title">{name}</h2>
                     <p>price:{price}</p>
