@@ -79,7 +79,7 @@ const CoffeeCard = ({ coffee }) => {
                         <button className='btn join-item'>Show</button>
                     </Link>
                     <Link to={`/updateCoffee/${_id}`}>
-                        <button className='btn join-item'>Edit</button>
+                        <button className='btn join-item'>Update</button>
                     </Link>
                     <h2 className="card-title">{name}</h2>
                     <p>price:{price}</p>
