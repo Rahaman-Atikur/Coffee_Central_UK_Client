@@ -1,14 +1,38 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
 const UpdateCoffee = () => {
-    const {name,quantity,price,taste,supplier,photo,details} = useLoaderData(); 
-    const handleUpdateCoffee = e=>{
+    const { _id, name, quantity, price, taste, supplier, photo, details } = useLoaderData();
+    const handleUpdateCoffee = e => {
         e.preventDefault();
-
+        const form = e.target;
+        const formData = new FormData(form);
+        const updateCoffee = Object.fromEntries(formData.entries());
+        console.log(updateCoffee);
+        fetch(`http://localhost:3000/coffees/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateCoffee)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Coffee Updated Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                console.log(data);
+            })
     }
     return (
-       <div className='p-24'>
+        <div className='p-24'>
             <div className='p-12 text-center space-y-4'>
                 <h1 className="text-6xl">Add New Coffee</h1>
                 <p>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
@@ -40,7 +64,7 @@ const UpdateCoffee = () => {
                         <input name='category' type="text" defaultValue={photo} className="input w-full" placeholder="Enter Coffee Category" />
                     </fieldset>
 
-                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
+                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Category</label>
                         <input name='category' type="text" defaultValue={details} className="input w-full" placeholder="Enter Coffee Category" />
                     </fieldset>
@@ -51,7 +75,7 @@ const UpdateCoffee = () => {
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Photo</label>
                         <input name='photo' type="text" className="input w-full" placeholder="Upload Photo from Device" />
-                        <button className="btn btn-active btn-secondary">Add Coffee</button>
+                        <button className="btn btn-active btn-secondary">Update  Coffee</button>
                     </fieldset>
                 </div>
             </form>
