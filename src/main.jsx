@@ -10,6 +10,7 @@ import UpdateCoffee from './Components/UpdateCoffee.jsx'
 import CoffeeDetails from './Components/CoffeeDetails.jsx'
 import Signin from './Components/Signin.jsx'
 import Signup from './Components/Signup.jsx'
+import AuthProvider from './firebase/AuthProvider.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         Component: Signin
       },
       {
-        path:'signup',
+        path: 'signup',
         Component: Signup
       }
     ]
@@ -47,6 +48,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
-  </StrictMode>,
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>,
+  </StrictMode>
+
 )

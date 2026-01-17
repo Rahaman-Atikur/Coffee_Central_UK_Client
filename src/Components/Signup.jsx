@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { use } from 'react';
+import { AuthContext } from '../firebase/AuthContext';
+import { auth } from '../firebase/firebase.init';
 
 const Signup = () => {
+    const { createUser } = use(AuthContext);
+    console.log(createUser);
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const email = formData.get('email');
+        console.log(email);
+        const password = formData.get('password');
+        console.log(password);
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+
+    }
+
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -13,11 +36,13 @@ const Signup = () => {
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
-                        <form className="fieldset">
+                        <form onSubmit={handleSignUp} className="fieldset">
                             <label className="label">Email</label>
-                            <input type="email" className="input" placeholder="Email" />
+                            <input name='name' type="email" className="input" placeholder="Email" />
+
                             <label className="label">Password</label>
-                            <input type="password" className="input" placeholder="Password" />
+                            <input name='password' type="password" className="input" placeholder="Password" />
+
                             <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn btn-neutral mt-4">Sign up</button>
                         </form>
