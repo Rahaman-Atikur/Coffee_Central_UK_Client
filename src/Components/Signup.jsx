@@ -1,22 +1,43 @@
 import React, { use } from 'react';
 import { AuthContext } from '../firebase/AuthContext';
+import Swal from 'sweetalert2';
 // import { auth } from '../firebase/firebase.init';
 
 const Signup = () => {
     const { createUser } = use(AuthContext);
-    // console.log(createUser);
+    // console.log(createUser); 13501
 
 
     const handleSignUp = (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const {email,password,...userProfile} = Object.fromEntries(formData.entries());
-        console.log(email,password,userProfile);
-        
+        const { email, password, ...userProfile } = Object.fromEntries(formData.entries());
+        console.log(email, password, userProfile);
+
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
+                // Save profile in the database
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userProfile)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your work has been saved",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
             })
             .catch(error => {
                 console.log(error);
@@ -39,9 +60,9 @@ const Signup = () => {
                             <label className="label">Email</label>
                             <input name='email' type="email" className="input" placeholder="Enter Your Email Address" />
 
-                             <label className="label">Photo URL</label>
+                            <label className="label">Photo URL</label>
                             <input name='photo' type="text" className="input" placeholder="Upload your photo Url" />
-                             <label className="label">Phone Number</label>
+                            <label className="label">Phone Number</label>
                             <input name='phone number' type="text" className="input" placeholder="Enter your phone number" />
 
                             <label className="label">Password</label>
