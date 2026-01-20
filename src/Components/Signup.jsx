@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from '../firebase/AuthContext';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 // import { auth } from '../firebase/firebase.init';
 
 const Signup = () => {
@@ -80,7 +81,7 @@ const Signup = () => {
                             <label className="label">Password</label>
                             <input name='password' type="password" className="input" placeholder="Password" />
 
-                            <div><a className="link link-hover">Already Have the Account ?</a></div>
+                            <div><Link to='/signin'>Already Have the Account ?</Link></div>
                             <button className="btn btn-neutral mt-4">Sign up</button>
                         </form>
                     </div>

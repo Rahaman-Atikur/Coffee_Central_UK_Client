@@ -1,6 +1,7 @@
 // import React, { use } from 'react';
 import { use } from 'react';
 import { AuthContext } from '../firebase/AuthContext';
+import { Link } from 'react-router';
 
 const Signin = () => {
     const { signInUser } = use(AuthContext);
@@ -58,7 +59,7 @@ const Signin = () => {
                                 <label className="label">Password</label>
                                 <input type="password" className="input" placeholder="Password" />
 
-                                <div><a className="link link-hover">Doesn't Have the Account?</a></div>
+                                <div><Link to="/signup">Doesn't Have the Account?</Link></div>
                                 <button className="btn btn-neutral mt-4">Log In</button>
                             </form>
                         </div>
@@ -66,9 +67,6 @@ const Signin = () => {
                 </div>
             </div>
         </>
-
-
     );
 };
-
 export default Signin;

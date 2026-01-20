@@ -88,8 +88,8 @@ const Users = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="font-bold">Marjy Ferencz</div>
-                                        <div className="text-sm opacity-50">Russia</div>
+                                        <div className="font-bold">Safeer Rahaman</div>
+                                        <div className="text-sm opacity-50">Hot Choclate</div>
                                     </div>
                                 </div>
                             </td>
