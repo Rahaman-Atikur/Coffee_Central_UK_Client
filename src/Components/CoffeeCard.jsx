@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
-const CoffeeCard = ({ coffee,coffees,setCoffees }) => {
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
     const { _id, name, price, quantity, photo } = coffee;
     const handleDelete = (_id) => {
         console.log(_id);
@@ -73,28 +73,27 @@ const CoffeeCard = ({ coffee,coffees,setCoffees }) => {
         });
     }
     return (
-        <div className="card card-side bg-base-100 shadow-sm">
+        <div className="card card-side bg-brown-500 shadow-lg mt-3">
             <figure>
                 <img
                     src={photo}
                     alt="Movie" />
             </figure>
-            <div className="flex w-full mt-6 justify-around border-8">
+            <div className="flex w-full mt-6 justify-around">
                 <div className='mt-6'>
-                    <Link to={`/coffee/${_id}`}>
-                        <button className='btn join-item'>Show</button>
-                    </Link>
-                    <Link to={`/updateCoffee/${_id}`}>
-                        <button className='btn join-item'>Update</button>
-                    </Link>
-                    <h2 className="card-title">{name}</h2>
-                    <p>price:{price}</p>
+
+                    <h2 className="card-title font-bold text-3xl text-accent-content">{name}</h2>
+                    <p>price: ${price}</p>
                     <p>quantity:{quantity}</p>
                 </div>
                 <div className='join join-vertical space-y-2'>
-                    <button className='btn'>View</button>
-                    <button className='btn'>Edit</button>
-                    <button onClick={() => handleDelete(_id)} className='btn'>X</button>
+                    <Link to={`/coffee/${_id}`}>
+                        <button className='btn join-item bg-orange-500'>Show</button>
+                    </Link>
+                    <Link to={`/updateCoffee/${_id}`}>
+                        <button className='btn join-item bg-amber-600'>Update</button>
+                    </Link>
+                    <button onClick={() => handleDelete(_id)} className='btn join-item bg-amber-600'>X</button>
                 </div>
             </div>
         </div>

@@ -70,7 +70,7 @@ const AddCoffee = () => {
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4 w-full">
                         <label className="label">Photo</label>
                         <input name='photo' type="text" className="input w-full" placeholder="Upload Photo from Device" />
-                        <button className="btn btn-active btn-secondary">Add Coffee</button>
+                        <button className="btn btn-active bg-orange-600">Add Coffee</button>
                     </fieldset>
                 </div>
             </form>
