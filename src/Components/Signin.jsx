@@ -20,7 +20,7 @@ const Signin = () => {
                     email,
                     lastSignInTime: result.user?.metadata?.lastSignInTime
                 }
-                fetch('http://localhost:3000/users', {
+                fetch('https://coffee-central-uk.vercel.app/users', {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
